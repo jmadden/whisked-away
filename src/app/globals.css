@@ -1,26 +1,72 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: light;
+  }
+
+  html {
+    @apply h-full antialiased;
+  }
+
+  body {
+    @apply min-h-full bg-white text-gray-900;
+  }
+
+  a {
+    @apply text-gray-900;
+  }
+
+  /* Better defaults for headings and paragraphs */
+  h1 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  h2 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+  h3 {
+    @apply text-xl font-semibold tracking-tight;
+  }
+  p {
+    @apply text-sm leading-6 text-gray-700;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Layout */
+  .container-page {
+    @apply mx-auto max-w-6xl px-6 py-10;
+  }
+
+  /* Cards */
+  .card {
+    @apply rounded-2xl border border-gray-200 bg-white shadow-sm;
+  }
+  .card-hover {
+    @apply transition hover:shadow-md;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium;
+  }
+  .btn-primary {
+    @apply bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply border border-gray-200 bg-white text-gray-900 hover:bg-gray-50 disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .btn-link {
+    @apply text-gray-900 underline underline-offset-4 hover:text-gray-700;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:border-gray-300 focus:ring-2 focus:ring-gray-200;
+  }
+
+  /* Small text helpers */
+  .muted {
+    @apply text-sm text-gray-600;
+  }
 }

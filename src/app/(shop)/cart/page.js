@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getCart, removeCartLine, updateCartLine } from '@/lib/cart/actions';
 
 function formatMoney(amount, currency) {
@@ -42,12 +43,15 @@ export default async function CartPage() {
             <li key={line.id} className='rounded-xl border border-gray-200 p-4'>
               <div className='flex items-start gap-4'>
                 {product.featuredImage?.url ? (
-                  <img
-                    src={product.featuredImage.url}
-                    alt={product.featuredImage.altText || product.title}
-                    className='h-20 w-20 rounded-lg object-cover'
-                    loading='lazy'
-                  />
+                  <div className='relative h-20 w-20 overflow-hidden rounded-lg'>
+                    <Image
+                      src={product.featuredImage.url}
+                      alt={product.featuredImage.altText || product.title}
+                      width={80}
+                      height={80}
+                      className='object-cover'
+                    />
+                  </div>
                 ) : (
                   <div className='h-20 w-20 rounded-lg bg-gray-100' />
                 )}

@@ -1,14 +1,33 @@
 export const PRODUCTS_QUERY = /* GraphQL */ `
-  query Products($first: Int!, $after: String) {
-    products(first: $first, after: $after) {
+  query Products(
+    $first: Int
+    $after: String
+    $last: Int
+    $before: String
+    $query: String
+    $sortKey: ProductSortKeys
+    $reverse: Boolean
+  ) {
+    products(
+      first: $first
+      after: $after
+      last: $last
+      before: $before
+      query: $query
+      sortKey: $sortKey
+      reverse: $reverse
+    ) {
       pageInfo {
         hasNextPage
         endCursor
+        hasPreviousPage
+        startCursor
       }
       nodes {
         id
         handle
         title
+        productType
         featuredImage {
           url
           altText
