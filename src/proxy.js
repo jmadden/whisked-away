@@ -4,6 +4,9 @@ import { get } from '@vercel/edge-config';
 
 export async function proxy(request) {
   const { pathname } = request.nextUrl;
+  if (process.env.NODE_ENV !== 'production') {
+    return NextResponse.next();
+  }
 
   if (
     pathname.startsWith('/_next') ||
